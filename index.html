@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kwabena Boakye — Data Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E9E4D4;
+    --paper-alt:#DFD9C6;
+    --ink:#1C2438;
+    --ink-soft:#4B5266;
+    --gold:#C79A3D;
+    --gold-soft:#E9CE8E;
+    --green:#3F6B4A;
+    --rust:#A8442E;
+    --rule:#B9B29B;
+    --white:#FBF9F2;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold-soft); color:var(--ink);}
+
+  .wrap{max-width:980px; margin:0 auto; padding:0 32px;}
+
+  a{color:inherit;}
+
+  /* ===== Header ledger tape ===== */
+  .tape{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.04em;
+    overflow:hidden;
+    white-space:nowrap;
+    border-bottom:1px solid var(--gold);
+  }
+  .tape-inner{
+    display:inline-flex;
+    animation:scroll 34s linear infinite;
+  }
+  .tape-inner span{
+    padding:8px 28px;
+    border-right:1px solid rgba(233,228,212,.25);
+  }
+  .tape-inner span b{color:var(--gold-soft); font-weight:600;}
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .tape-inner{animation:none;}
+  }
+
+  /* ===== Hero ===== */
+  header.hero{
+    padding:88px 0 56px;
+    border-bottom:1px solid var(--rule);
+    position:relative;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px; height:1px;
+    background:var(--gold);
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(40px, 6vw, 68px);
+    line-height:1.02;
+    letter-spacing:-0.01em;
+    max-width:15ch;
+  }
+  h1 em{
+    font-style:italic;
+    font-weight:300;
+    color:var(--ink-soft);
+  }
+  .hero-sub{
+    margin-top:22px;
+    font-size:17px;
+    max-width:52ch;
+    color:var(--ink-soft);
+  }
+  .hero-links{
+    margin-top:32px;
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+  }
+  .hero-links a{
+    text-decoration:none;
+    border-bottom:1px solid var(--ink);
+    padding-bottom:2px;
+    transition:color .15s, border-color .15s;
+  }
+  .hero-links a:hover{color:var(--rust); border-color:var(--rust);}
+
+  /* ===== Section labels ===== */
+  .section{
+    padding:76px 0;
+    border-bottom:1px solid var(--rule);
+  }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:44px;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .tab{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--white);
+    background:var(--ink);
+    padding:5px 12px;
+    display:inline-block;
+    margin-bottom:16px;
+  }
+  .section h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(28px, 4vw, 38px);
+    letter-spacing:-.01em;
+    max-width:20ch;
+  }
+  .section-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    text-align:right;
+    line-height:1.7;
+  }
+
+  .lede{
+    font-size:16.5px;
+    max-width:64ch;
+    color:var(--ink-soft);
+    margin-bottom:36px;
+  }
+
+  /* ===== Ledger table ===== */
+  .ledger{
+    width:100%;
+    border-collapse:collapse;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    margin:28px 0 8px;
+    background:var(--white);
+    border:1px solid var(--rule);
+  }
+  .ledger caption{
+    text-align:left;
+    font-family:'Inter',sans-serif;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    padding:10px 14px;
+    background:var(--paper-alt);
+    border-bottom:1px solid var(--rule);
+  }
+  .ledger th, .ledger td{
+    text-align:left;
+    padding:9px 14px;
+    border-bottom:1px solid #E4DFCF;
+    white-space:nowrap;
+  }
+  .ledger th{
+    color:var(--ink-soft);
+    font-weight:500;
+    font-size:11px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--rule);
+  }
+  .ledger tr:last-child td{border-bottom:none;}
+  .sig{color:var(--green); font-weight:600;}
+  .nsig{color:var(--ink-soft);}
+  .pos{color:var(--green);}
+  .neg{color:var(--rust);}
+
+  .ledger-wrap{overflow-x:auto;}
+
+  /* ===== Equation strip ===== */
+  .equation{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    background:var(--gold-soft);
+    border:1px solid var(--gold);
+    padding:16px 18px;
+    margin:28px 0;
+    line-height:1.8;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  .equation .label{
+    display:block;
+    font-family:'Inter', sans-serif;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+
+  /* ===== Findings grid ===== */
+  .findings{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--rule);
+    border:1px solid var(--rule);
+    margin-top:32px;
+  }
+  .findings div{
+    background:var(--paper);
+    padding:20px 22px;
+  }
+  .findings .f-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--gold);
+    letter-spacing:.08em;
+    margin-bottom:8px;
+    display:block;
+  }
+  .findings p{font-size:14px; color:var(--ink-soft);}
+  @media (max-width:640px){
+    .findings{grid-template-columns:1fr;}
+  }
+
+  /* ===== Confusion matrix ===== */
+  .cm-block{
+    display:flex;
+    gap:36px;
+    flex-wrap:wrap;
+    align-items:flex-start;
+    margin-top:28px;
+  }
+  .cm{
+    border-collapse:collapse;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+  }
+  .cm td, .cm th{
+    width:74px; height:56px;
+    text-align:center;
+    border:1px solid var(--rule);
+  }
+  .cm .tn{background:#DCE7DE;}
+  .cm .tp{background:#DCE7DE;}
+  .cm .fp{background:#F2DAD2;}
+  .cm .fn{background:#F2DAD2;}
+  .cm-legend{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    max-width:34ch;
+  }
+  .cm-legend p{margin-bottom:8px;}
+
+  .callout{
+    border-left:3px solid var(--rust);
+    padding:14px 18px;
+    margin-top:28px;
+    background:var(--white);
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .callout b{color:var(--ink);}
+
+  .stack{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-top:26px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .stack span{
+    border:1px solid var(--rule);
+    padding:4px 10px;
+    background:var(--white);
+  }
+
+  .cta-row{
+    margin-top:36px;
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    text-decoration:none;
+    padding:11px 20px;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    display:inline-block;
+    transition:background .15s, color .15s;
+  }
+  .btn:hover{background:var(--ink); color:var(--paper);}
+  .btn.primary{background:var(--ink); color:var(--paper);}
+  .btn.primary:hover{background:var(--rust); border-color:var(--rust);}
+
+  /* ===== About ===== */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:48px;
+  }
+  @media (max-width:760px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{color:var(--ink-soft); font-size:15px; margin-bottom:16px; max-width:56ch;}
+  .skills-list{list-style:none;}
+  .skills-list li{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:10px 0;
+    border-bottom:1px solid var(--rule);
+    display:flex;
+    justify-content:space-between;
+  }
+  .skills-list li span:last-child{color:var(--ink-soft);}
+
+  /* ===== Footer ===== */
+  footer{
+    padding:52px 0 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  footer .fname{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:600;
+  }
+  footer .flinks{
+    display:flex;
+    gap:22px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+  }
+  footer .flinks a{text-decoration:none; border-bottom:1px solid transparent;}
+  footer .flinks a:hover{border-color:var(--ink);}
+  footer .fmeta{
+    width:100%;
+    margin-top:24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+  }
+
+  :focus-visible{outline:2px solid var(--rust); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="tape">
+  <div class="tape-inner">
+    <span>R² <b>0.55</b> — property price model</span>
+    <span>Accuracy <b>84.86%</b> — loan approval model</span>
+    <span>Recall <b>97.64%</b> — logistic regression</span>
+    <span>5 classifiers benchmarked</span>
+    <span>614 loan applicants · 506 property records</span>
+    <span>R² <b>0.55</b> — property price model</span>
+    <span>Accuracy <b>84.86%</b> — loan approval model</span>
+    <span>Recall <b>97.64%</b> — logistic regression</span>
+    <span>5 classifiers benchmarked</span>
+    <span>614 loan applicants · 506 property records</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Data Analysis Portfolio</div>
+    <h1>Kwabena Boakye<br><em>reads the numbers, then makes the case.</em></h1>
+    <p class="hero-sub">Two applied projects in predictive analytics — one estimating property prices from structural and environmental factors, one benchmarking five classifiers for loan approval decisions. Built in Excel, Python, and scikit-learn, written up the way a stakeholder actually needs to read it.</p>
+    <div class="hero-links">
+      <a href="#project-01">Project 01 — Property Price Model</a>
+      <a href="#project-02">Project 02 — Loan Approval Classifiers</a>
+      <a href="#about">About</a>
+    </div>
+    <div class="cta-row">
+      <a class="btn primary" href="Kwabena-Boakye-Resume.pdf" target="_blank" rel="noopener">Download Résumé (PDF) ↓</a>
+    </div>
+  </header>
+
+  <!-- ===================== PROJECT 01 ===================== -->
+  <section class="section" id="project-01">
+    <div class="section-head">
+      <div>
+        <span class="tab">Project 01 · Regression</span>
+        <h2>Estimating Property Prices from Structural &amp; Area Characteristics</h2>
+      </div>
+      <div class="section-meta">
+        Method: Multiple Linear Regression<br>
+        Tool: Excel (Data Analysis ToolPak)<br>
+        n = 506 observations
+      </div>
+    </div>
+
+    <p class="lede">Goal: estimate house prices using structural factors (room count, age) alongside area characteristics — crime rate, air quality, rainfall, and proximity to airports, waterbodies, and bus stops — to give developers and buyers a feature-level view of what drives value.</p>
+
+    <div class="ledger-wrap">
+    <table class="ledger">
+      <caption>Regression output — coefficients &amp; significance</caption>
+      <thead>
+        <tr><th>Variable</th><th>Coefficient</th><th>P-value</th><th>Effect on price</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Room number</td><td class="pos">+7.23</td><td class="sig">0.00</td><td class="sig">Significant — largest positive driver</td></tr>
+        <tr><td>Air quality</td><td class="neg">−6.99</td><td class="sig">0.04</td><td class="sig">Significant</td></tr>
+        <tr><td>Crime rate</td><td class="neg">−0.21</td><td class="sig">0.00</td><td class="sig">Significant — inverse relationship</td></tr>
+        <tr><td>Age of house</td><td class="neg">−0.03</td><td class="sig">0.02</td><td class="sig">Significant</td></tr>
+        <tr><td>Airport proximity</td><td class="pos">+1.19</td><td class="sig">0.03</td><td class="sig">Significant</td></tr>
+        <tr><td>Rainfall</td><td class="pos">+0.01</td><td class="nsig">0.55</td><td class="nsig">Not significant</td></tr>
+        <tr><td>Waterbody</td><td class="pos">+0.34</td><td class="nsig">0.57</td><td class="nsig">Not significant</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="equation">
+      <span class="label">Fitted model</span>
+      Price = −17.26 − 0.21(crime_rate) − 6.99(air_quality) + 7.23(room_num) − 0.03(age) + 0.01(rainfall) + 1.19(airport) + 0.34(waterbody)
+    </div>
+
+    <div class="findings">
+      <div><span class="f-num">01 — FIT</span><p>R² = 0.55 — the model explains roughly 55% of the variation in house prices across the seven predictors tested.</p></div>
+      <div><span class="f-num">02 — ROOMS</span><p>Room count is the single strongest lever: each additional room is associated with a meaningful price increase, holding other factors constant.</p></div>
+      <div><span class="f-num">03 — CRIME</span><p>Areas with crime rates at or below 2.9 command consistently higher average prices than areas above 4.0.</p></div>
+      <div><span class="f-num">04 — NOISE</span><p>Rainfall and waterbody proximity showed no statistically significant effect — price is driven by structure and safety, not by these environmental variables.</p></div>
+    </div>
+
+    <div class="callout"><b>Recommendation.</b> Developers see the highest return focusing on room count and low-crime locations; rainfall and waterbody access are not worth prioritizing on price grounds alone. Buyers should weight crime rate and air quality most heavily when assessing long-term investment value.</div>
+
+    <div class="stack"><span>Excel</span><span>Pivot Tables</span><span>Regression Analysis</span><span>Data Visualization</span></div>
+
+    <div class="cta-row">
+      <a class="btn primary" href="Property-Price-Regression-Report.pdf" target="_blank" rel="noopener">Read the full report (PDF) ↗</a>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECT 02 ===================== -->
+  <section class="section" id="project-02">
+    <div class="section-head">
+      <div>
+        <span class="tab">Project 02 · Classification</span>
+        <h2>Loan Approval Prediction: Comparing Five Classifiers</h2>
+      </div>
+      <div class="section-meta">
+        Methods: Logistic Regression, KNN,<br>
+        Decision Tree, Random Forest, MLP<br>
+        n = 614 applicants · 70/30 split
+      </div>
+    </div>
+
+    <p class="lede">Goal: determine which of five supervised models best predicts loan approval, then weigh the business cost of false approvals against false denials — the trade-off that actually matters to a lender.</p>
+
+    <div class="ledger-wrap">
+    <table class="ledger">
+      <caption>Model comparison — tuned results</caption>
+      <thead>
+        <tr><th>Model</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Logistic Regression</td><td class="sig">84.86%</td><td>83.22%</td><td class="sig">97.64%</td><td>89.86%</td></tr>
+        <tr><td>Random Forest</td><td>83.78%</td><td>82.55%</td><td>96.85%</td><td>89.13%</td></tr>
+        <tr><td>KNN (k=10)</td><td>81.62%</td><td>81.21%</td><td>95.28%</td><td>87.68%</td></tr>
+        <tr><td>Decision Tree</td><td>80.00%</td><td>81.69%</td><td>91.34%</td><td>86.25%</td></tr>
+        <tr><td>Neural Network</td><td class="neg">78.92%</td><td>82.84%</td><td class="neg">87.40%</td><td>85.06%</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="cm-block">
+      <table class="cm" aria-label="Confusion matrix for the logistic regression model">
+        <tr><th></th><th>Pred. Denied</th><th>Pred. Approved</th></tr>
+        <tr><th>Actual Denied</th><td class="tn">33</td><td class="fp">25</td></tr>
+        <tr><th>Actual Approved</th><td class="fn">3</td><td class="tp">124</td></tr>
+      </table>
+      <div class="cm-legend">
+        <p><b>Best model: Logistic Regression.</b> Only 3 approved loans were wrongly denied (false negatives) out of 127 — the lowest of any model tested, ahead of Random Forest (4), KNN (6), Decision Tree (11), and the neural network (16).</p>
+        <p>Simplicity won here: with 614 records and near-linear decision boundaries, the smallest model generalized best.</p>
+      </div>
+    </div>
+
+    <div class="findings">
+      <div><span class="f-num">01 — DRIVER</span><p>Credit history alone accounts for 34.2% of predictive importance in the Random Forest model — by far the dominant feature.</p></div>
+      <div><span class="f-num">02 — COST</span><p>A false approval (~$10,000 lost principal) costs roughly 10× a false denial (~$1,000 in foregone interest) — so precision matters more than raw accuracy.</p></div>
+      <div><span class="f-num">03 — COMPLIANCE</span><p>Logistic regression's coefficients are directly explainable — a requirement under ECOA/Fair Lending rules that black-box models like the neural network can't easily satisfy.</p></div>
+      <div><span class="f-num">04 — THRESHOLD</span><p>Raising the decision threshold from 0.5 to ~0.7 trades a small amount of recall for meaningfully fewer false approvals — an estimated net benefit of ~$95,000 per 100 loans.</p></div>
+    </div>
+
+    <div class="callout"><b>Ethical note.</b> Gender and marital status were predictive but excluded from any deployment decision — using them would violate fair-lending law even where they improve accuracy. Credit history itself may encode historical inequity, which any production model needs a disparate-impact review to catch.</div>
+
+    <div class="stack"><span>Python</span><span>pandas</span><span>scikit-learn</span><span>matplotlib</span><span>Jupyter</span></div>
+
+    <div class="cta-row">
+      <a class="btn primary" href="Loan-Approval-Classification-Paper.pdf" target="_blank" rel="noopener">Read the full paper (PDF) ↗</a>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="section" id="about">
+    <div class="section-head">
+      <div>
+        <span class="tab">About</span>
+        <h2>From raw table to recommendation</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I work the way both projects above are written: start with the descriptive picture — distributions, pivots, the relationships that show up before any model runs — then bring in a predictive method suited to the question, and end on what a stakeholder should actually do with the result.</p>
+        <p>That means treating model choice as a business decision, not a leaderboard. In the loan project, the simplest model won because it was both more accurate and the only one a compliance team could explain. In the property project, the story was which variables didn't matter as much as which did.</p>
+      </div>
+      <ul class="skills-list">
+        <li><span>Excel / ToolPak</span><span>Regression, pivots</span></li>
+        <li><span>Python</span><span>pandas, scikit-learn</span></li>
+        <li><span>Statistics</span><span>Hypothesis testing, p-values</span></li>
+        <li><span>Classification</span><span>Logistic, trees, ensembles</span></li>
+        <li><span>Communication</span><span>Stakeholder write-ups</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="fname">Kwabena Boakye</div>
+    <div class="flinks">
+      <a href="mailto:kbwaxmab@gmail.com">Email</a>
+      <a href="tel:2693662234">269-366-2234</a>
+      <a href="Kwabena-Boakye-Resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+    </div>
+    <div class="fmeta">Mount Pleasant, MI · Add your LinkedIn and GitHub URLs above before publishing.</div>
+  </footer>
+
+</div>
+
+</body>
+</html>
